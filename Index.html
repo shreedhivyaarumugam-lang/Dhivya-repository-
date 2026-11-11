@@ -1,1 +1,172 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhivya A. | Audit & Accounting</title>
+<style>
+:root {
+  --gold: #d6b46a;
+  --black: #080808;
+  --card: #141414;
+  --white: #f5f3ee;
+  --muted: #aaa;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+}
+a { text-decoration: none; color: inherit; }
+header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(8,8,8,.94);
+  border-bottom: 1px solid #252525;
+  padding: 15px 6%;
+  display: flex; justify-content: space-between;
+  align-items: center;
+}
+.logo { color: var(--gold); font-weight: bold; letter-spacing: 2px; }
+nav { display: flex; gap: 18px; font-size: 13px; }
+nav a:hover { color: var(--gold); }
+.hero {
+  min-height: 90vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 70px 20px;
+  background: radial-gradient(ellipse at center,#292114 0%,#080808 65%);
+}
+.eyebrow { color: var(--gold); letter-spacing: 4px; font-size: 12px; }
+h1 { font-size: clamp(42px,10vw,88px); line-height: 1.15; margin: 20px 0; }
+h1 span { color: var(--gold); }
+.hero p { color: var(--muted); max-width: 540px; margin: 12px auto; }
+.buttons { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+.btn {
+  padding: 12px 22px; border: 1px solid var(--gold);
+  border-radius: 3px; font-size: 14px;
+  transition: .3s;
+}
+.btn.primary { background: var(--gold); color: #111; }
+.btn:hover { transform: translateY(-3px); opacity: .85; }
+section { padding: 85px 7%; }
+.section-title { color: var(--gold); letter-spacing: 3px; font-size: 12px; }
+h2 { font-size: 34px; margin: 8px 0 28px; }
+.about { max-width: 850px; color: #c5c5c5; }
+.grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+.card {
+  background: var(--card); border: 1px solid #292929;
+  padding: 25px; border-radius: 8px;
+}
+.card h3 { color: var(--gold); margin-bottom: 8px; }
+.card p { color: var(--muted); font-size: 14px; }
+.skills { display: flex; flex-wrap: wrap; gap: 12px; }
+.skill {
+  border: 1px solid #39332a; padding: 10px 16px;
+  color: #ddd; border-radius: 4px; font-size: 14px;
+}
+.contact { text-align: center; background: #101010; }
+.contact p { color: var(--muted); margin-bottom: 20px; }
+footer {
+  text-align: center; padding: 25px;
+  border-top: 1px solid #252525;
+  color: #777; font-size: 12px;
+}
+@media(max-width:600px) {
+  header { padding: 14px 4%; }
+  nav { gap: 10px; font-size: 11px; }
+  .logo { font-size: 13px; }
+  section { padding: 65px 6%; }
+  .grid { grid-template-columns: 1fr; }
+  h2 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">DHIVYA A.</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="eyebrow">AUDIT • ACCOUNTING • COMPLIANCE</div>
+  <h1>DHIVYA <span>A.</span></h1>
+  <h3>Audit Assistant & Accountant</h3>
+  <p>Precision. Integrity. Financial Excellence.</p>
+  <p>Dedicated to accurate accounting, reliable audit support and financial compliance.</p>
+  <div class="buttons">
+    <a class="btn primary" href="#experience">Explore My Experience</a>
+    <a class="btn" href="#contact">Contact Me</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-title">ABOUT ME</div>
+  <h2>Professional Profile</h2>
+  <p class="about">
+    M.Com graduate with professional experience in audit and accounting.
+    Experienced in supporting statutory and internal audit activities,
+    GST and TDS compliance, accounting records and financial documentation.
+    Committed to accuracy, professional integrity and continuous learning.
+  </p>
+</section>
+
+<section id="experience">
+  <div class="section-title">CAREER JOURNEY</div>
+  <h2>Professional Experience</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>K.V & Co.</h3>
+      <p><strong>Audit Staff</strong></p>
+      <p>February 2026 – Present</p>
+      <p>Audit support, accounting work and tax compliance activities.</p>
+    </div>
+    <div class="card">
+      <h3>VKD Associates</h3>
+      <p><strong>Audit Assistant</strong></p>
+      <p>Professional audit experience</p>
+      <p>Statutory audit, internal audit and financial documentation.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-title">CORE COMPETENCIES</div>
+  <h2>Skills & Expertise</h2>
+  <div class="skills">
+    <span class="skill">Statutory Audit</span>
+    <span class="skill">Internal Audit</span>
+    <span class="skill">GST Compliance</span>
+    <span class="skill">TDS Computation & Filing</span>
+    <span class="skill">Tally Prime</span>
+    <span class="skill">MS Excel</span>
+    <span class="skill">Accounting</span>
+    <span class="skill">Financial Documentation</span>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="section-title">LET'S CONNECT</div>
+  <h2>Let's Work Together</h2>
+  <p>Interested in professional opportunities and meaningful collaborations.</p>
+  <div class="buttons">
+    <a class="btn primary" href="mailto:shreedhivyaarumugam@gmail.com">Email Me</a>
+    <a class="btn" href="https://www.linkedin.com/in/dhivya-a-552130215/" target="_blank">LinkedIn Profile</a>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Dhivya A. | Professional Portfolio</footer>
+</body>
+  </html>
+
