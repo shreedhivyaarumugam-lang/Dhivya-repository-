@@ -4,169 +4,652 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dhivya A. | Audit & Accounting</title>
+<meta name="theme-color" content="#080808">
+<title>Dhivya A | Audit Assistant</title>
+
+<script src="config.js"></script>
+
 <style>
-:root {
-  --gold: #d6b46a;
-  --black: #080808;
-  --card: #141414;
-  --white: #f5f3ee;
-  --muted: #aaa;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+
 body {
-  background: var(--black);
-  color: var(--white);
+  background: #080808;
+  color: #fff;
   font-family: Arial, sans-serif;
-  line-height: 1.7;
+  overflow-x: hidden;
 }
-a { text-decoration: none; color: inherit; }
-header {
-  position: sticky; top: 0; z-index: 10;
-  background: rgba(8,8,8,.94);
-  border-bottom: 1px solid #252525;
-  padding: 15px 6%;
-  display: flex; justify-content: space-between;
+
+:root {
+  --gold: #ff9a4d;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 7%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  z-index: 100;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(12px);
 }
-.logo { color: var(--gold); font-weight: bold; letter-spacing: 2px; }
-nav { display: flex; gap: 18px; font-size: 13px; }
-nav a:hover { color: var(--gold); }
+
+.logo {
+  font-size: 21px;
+  font-weight: bold;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+nav a:hover {
+  color: var(--gold);
+}
+
 .hero {
-  min-height: 90vh;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center; padding: 70px 20px;
-  background: radial-gradient(ellipse at center,#292114 0%,#080808 65%);
+  height: 100vh;
+  min-height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
-.eyebrow { color: var(--gold); letter-spacing: 4px; font-size: 12px; }
-h1 { font-size: clamp(42px,10vw,88px); line-height: 1.15; margin: 20px 0; }
-h1 span { color: var(--gold); }
-.hero p { color: var(--muted); max-width: 540px; margin: 12px auto; }
-.buttons { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
-.btn {
-  padding: 12px 22px; border: 1px solid var(--gold);
-  border-radius: 3px; font-size: 14px;
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg, rgba(0,0,0,.85),
+    rgba(0,0,0,.3), rgba(0,0,0,.85)
+  );
+  z-index: 2;
+}
+
+.hero video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .8;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 10vw, 100px);
+  letter-spacing: 5px;
+  margin: 15px 0;
+}
+
+.hero h1 span {
+  color: var(--gold);
+}
+
+.hero p {
+  color: #ddd;
+  letter-spacing: 4px;
+  font-size: 13px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 5px;
+  font-size: 12px;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 28px;
+  border: 1px solid var(--gold);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
   transition: .3s;
 }
-.btn.primary { background: var(--gold); color: #111; }
-.btn:hover { transform: translateY(-3px); opacity: .85; }
-section { padding: 85px 7%; }
-.section-title { color: var(--gold); letter-spacing: 3px; font-size: 12px; }
-h2 { font-size: 34px; margin: 8px 0 28px; }
-.about { max-width: 850px; color: #c5c5c5; }
-.grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+
+.button:hover {
+  background: var(--gold);
+  color: black;
+}
+
+.scroll-note {
+  margin-top: 55px;
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: 3px;
+}
+
+.video-story {
+  height: 600vh;
+  position: relative;
+  background: #050505;
+}
+
+.sticky-film {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #050505;
+}
+
+.film {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.film.active {
+  opacity: 1;
+}
+
+.film-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg, rgba(0,0,0,.65),
+    transparent 80%
+  );
+  pointer-events: none;
+}
+
+.film-label {
+  position: absolute;
+  bottom: 12%;
+  left: 8%;
+  z-index: 5;
+  max-width: 500px;
+}
+
+.film-label h2 {
+  font-size: clamp(30px, 6vw, 65px);
+  margin: 12px 0;
+}
+
+.film-label p {
+  color: #ccc;
+  line-height: 1.7;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: #333;
+  z-index: 10;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--gold);
+}
+
+.section {
+  padding: 110px 9%;
+  min-height: 65vh;
+}
+
+.section-title {
+  font-size: clamp(35px, 6vw, 60px);
+  margin: 15px 0 30px;
+}
+
+.section-title span {
+  color: var(--gold);
+}
+
+.description {
+  max-width: 750px;
+  line-height: 1.9;
+  color: #bbb;
+  font-size: 16px;
+}
+
+.stats, .skills, .projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+  gap: 18px;
+  margin-top: 40px;
+}
+
 .card {
-  background: var(--card); border: 1px solid #292929;
-  padding: 25px; border-radius: 8px;
+  padding: 28px;
+  border: 1px solid #292929;
+  background: linear-gradient(145deg,#171717,#090909);
+  border-radius: 12px;
+  transition: .3s;
 }
-.card h3 { color: var(--gold); margin-bottom: 8px; }
-.card p { color: var(--muted); font-size: 14px; }
-.skills { display: flex; flex-wrap: wrap; gap: 12px; }
-.skill {
-  border: 1px solid #39332a; padding: 10px 16px;
-  color: #ddd; border-radius: 4px; font-size: 14px;
+
+.card:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
 }
-.contact { text-align: center; background: #101010; }
-.contact p { color: var(--muted); margin-bottom: 20px; }
+
+.card h3 {
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.skill-card {
+  text-align: center;
+  color: #eee;
+  font-size: 14px;
+}
+
+.timeline {
+  border-left: 1px solid var(--gold);
+  padding-left: 28px;
+  margin-top: 35px;
+}
+
+.timeline-item {
+  margin-bottom: 35px;
+}
+
+.timeline-item h3 {
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.timeline-item p {
+  color: #aaa;
+  line-height: 1.8;
+}
+
+.contact {
+  text-align: center;
+  background: #101010;
+}
+
+.contact a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
 footer {
-  text-align: center; padding: 25px;
-  border-top: 1px solid #252525;
-  color: #777; font-size: 12px;
+  padding: 25px;
+  text-align: center;
+  color: #777;
+  font-size: 12px;
 }
+
 @media(max-width:600px) {
-  header { padding: 14px 4%; }
-  nav { gap: 10px; font-size: 11px; }
-  .logo { font-size: 13px; }
-  section { padding: 65px 6%; }
-  .grid { grid-template-columns: 1fr; }
-  h2 { font-size: 28px; }
+  nav {
+    padding: 15px 5%;
+  }
+
+  nav a {
+    margin-left: 8px;
+    font-size: 10px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .section {
+    padding: 85px 7%;
+  }
+
+  .film-label {
+    bottom: 12%;
+    left: 7%;
+    right: 7%;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
 }
 </style>
 </head>
+
 <body>
 
-<header>
-  <div class="logo">DHIVYA A.</div>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<nav>
+  <div class="logo">DHIVYA.</div>
+  <div>
+    <a href="#about">ABOUT</a>
+    <a href="#skills">SKILLS</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+</nav>
+
+<!-- OPENING -->
+<header class="hero">
+  <video autoplay muted loop playsinline poster="">
+    <source src="videos/clip1.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-content">
+    <div class="eyebrow">WELCOME TO MY WORLD</div>
+    <h1 id="heroName">DHIVYA <span>A.</span></h1>
+    <p id="heroRole">AUDIT ASSISTANT</p>
+    <a href="#about" class="button">EXPLORE MY PORTFOLIO</a>
+    <div class="scroll-note">SCROLL TO EXPLORE ↓</div>
+  </div>
 </header>
 
-<main>
-<section class="hero">
-  <div class="eyebrow">AUDIT • ACCOUNTING • COMPLIANCE</div>
-  <h1>DHIVYA <span>A.</span></h1>
-  <h3>Audit Assistant & Accountant</h3>
-  <p>Precision. Integrity. Financial Excellence.</p>
-  <p>Dedicated to accurate accounting, reliable audit support and financial compliance.</p>
-  <div class="buttons">
-    <a class="btn primary" href="#experience">Explore My Experience</a>
-    <a class="btn" href="#contact">Contact Me</a>
+<!-- SIX CLIP SCROLL CINEMA -->
+<div class="video-story" id="cinema">
+  <div class="sticky-film">
+
+    <video class="film active" muted playsinline preload="auto">
+      <source src="videos/clip1.mp4" type="video/mp4">
+    </video>
+
+    <video class="film" muted playsinline preload="auto">
+      <source src="videos/clip2.mp4" type="video/mp4">
+    </video>
+
+    <video class="film" muted playsinline preload="auto">
+      <source src="videos/clip3.mp4" type="video/mp4">
+    </video>
+
+    <video class="film" muted playsinline preload="auto">
+      <source src="videos/clip4.mp4" type="video/mp4">
+    </video>
+
+    <video class="film" muted playsinline preload="auto">
+      <source src="videos/clip5.mp4" type="video/mp4">
+    </video>
+
+    <video class="film" muted playsinline preload="auto">
+      <source src="videos/clip6.mp4" type="video/mp4">
+    </video>
+
+    <div class="film-overlay"></div>
+
+    <div class="film-label">
+      <div class="eyebrow" id="filmNumber">01 / 06</div>
+      <h2 id="filmTitle">MY JOURNEY</h2>
+      <p id="filmDescription">
+        A journey of learning, growth and professional excellence.
+      </p>
+    </div>
+
+    <div class="progress">
+      <span id="progressBar"></span>
+    </div>
   </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="eyebrow">01 / ABOUT ME</div>
+  <h2 class="section-title">
+    A LITTLE <span>ABOUT ME</span>
+  </h2>
+
+  <p class="description" id="aboutText"></p>
+
+  <div class="stats" id="stats"></div>
 </section>
 
-<section id="about">
-  <div class="section-title">ABOUT ME</div>
-  <h2>Professional Profile</h2>
-  <p class="about">
-    M.Com graduate with professional experience in audit and accounting.
-    Experienced in supporting statutory and internal audit activities,
-    GST and TDS compliance, accounting records and financial documentation.
-    Committed to accuracy, professional integrity and continuous learning.
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="eyebrow">02 / PROFESSIONAL JOURNEY</div>
+  <h2 class="section-title">
+    MY <span>EXPERIENCE</span>
+  </h2>
+  <div class="timeline" id="experienceList"></div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="eyebrow">03 / EXPERTISE</div>
+  <h2 class="section-title">
+    MY <span>SKILLS</span>
+  </h2>
+  <div class="skills" id="skillList"></div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="eyebrow">04 / EDUCATION</div>
+  <h2 class="section-title">
+    ACADEMIC <span>BACKGROUND</span>
+  </h2>
+  <div class="projects" id="educationList"></div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="eyebrow">05 / WHAT I DO</div>
+  <h2 class="section-title">
+    MY <span>EXPERTISE</span>
+  </h2>
+  <div class="projects" id="projectList"></div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="eyebrow">06 / LET'S CONNECT</div>
+  <h2 class="section-title">
+    LET'S CREATE <span>OPPORTUNITIES</span>
+  </h2>
+
+  <p class="description" style="margin:auto">
+    Thank you for visiting my portfolio.
+    I look forward to connecting with you.
   </p>
+
+  <p style="margin-top:30px">
+    Email: <a id="emailLink" href="#">Email Me</a>
+  </p>
+
+  <p style="margin-top:20px">
+    Phone: <a id="phoneLink" href="#">Contact Me</a>
+  </p>
+
+  <p style="margin-top:20px">
+    <a id="linkedinLink" href="#" target="_blank">
+      CONNECT ON LINKEDIN →
+    </a>
+  </p>
+
+  <a id="resumeLink" href="media/resume.pdf"
+     class="button" download>
+    DOWNLOAD MY RESUME ↓
+  </a>
 </section>
 
-<section id="experience">
-  <div class="section-title">CAREER JOURNEY</div>
-  <h2>Professional Experience</h2>
-  <div class="grid">
+<footer>
+  © <span id="year"></span> DHIVYA A.
+  ALL RIGHTS RESERVED.
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+if (typeof CONFIG !== "undefined") {
+
+  $("heroName").innerHTML =
+    CONFIG.firstName + " <span>" + CONFIG.lastName + ".</span>";
+
+  $("heroRole").textContent = CONFIG.role;
+  $("aboutText").textContent = CONFIG.about;
+
+  document.documentElement.style.setProperty(
+    "--gold", CONFIG.accent
+  );
+
+  $("emailLink").textContent = CONFIG.email;
+  $("emailLink").href = "mailto:" + CONFIG.email;
+
+  $("phoneLink").textContent = CONFIG.phone;
+  $("phoneLink").href = "tel:" + CONFIG.phone;
+
+  $("linkedinLink").href = CONFIG.linkedin;
+  $("resumeLink").href = CONFIG.resume;
+
+  $("year").textContent = new Date().getFullYear();
+
+  $("stats").innerHTML = CONFIG.stats.map(s => `
     <div class="card">
-      <h3>K.V & Co.</h3>
-      <p><strong>Audit Staff</strong></p>
-      <p>February 2026 – Present</p>
-      <p>Audit support, accounting work and tax compliance activities.</p>
+      <h3>${s.number}</h3>
+      <p>${s.label}</p>
     </div>
-    <div class="card">
-      <h3>VKD Associates</h3>
-      <p><strong>Audit Assistant</strong></p>
-      <p>Professional audit experience</p>
-      <p>Statutory audit, internal audit and financial documentation.</p>
-    </div>
-  </div>
-</section>
+  `).join("");
 
-<section id="skills">
-  <div class="section-title">CORE COMPETENCIES</div>
-  <h2>Skills & Expertise</h2>
-  <div class="skills">
-    <span class="skill">Statutory Audit</span>
-    <span class="skill">Internal Audit</span>
-    <span class="skill">GST Compliance</span>
-    <span class="skill">TDS Computation & Filing</span>
-    <span class="skill">Tally Prime</span>
-    <span class="skill">MS Excel</span>
-    <span class="skill">Accounting</span>
-    <span class="skill">Financial Documentation</span>
-  </div>
-</section>
+  $("skillList").innerHTML = CONFIG.skills.map(s => `
+    <div class="card skill-card">${s}</div>
+  `).join("");
 
-<section id="contact" class="contact">
-  <div class="section-title">LET'S CONNECT</div>
-  <h2>Let's Work Together</h2>
-  <p>Interested in professional opportunities and meaningful collaborations.</p>
-  <div class="buttons">
-    <a class="btn primary" href="mailto:shreedhivyaarumugam@gmail.com">Email Me</a>
-    <a class="btn" href="https://www.linkedin.com/in/dhivya-a-552130215/" target="_blank">LinkedIn Profile</a>
-  </div>
-</section>
-</main>
+  $("experienceList").innerHTML =
+    CONFIG.experience.map(e => `
+      <div class="timeline-item">
+        <h3>${e.role}</h3>
+        <p>${e.company} · ${e.period}</p>
+        <p>${e.description}</p>
+      </div>
+    `).join("");
 
-<footer>© 2026 Dhivya A. | Professional Portfolio</footer>
+  $("educationList").innerHTML =
+    CONFIG.education.map(e => `
+      <div class="card">
+        <h3>${e.degree}</h3>
+        <p>${e.college}</p>
+        <p>${e.year}</p>
+      </div>
+    `).join("");
+
+  $("projectList").innerHTML =
+    CONFIG.projects.map(p => `
+      <div class="card">
+        <h3>${p.title}</h3>
+        <p>${p.category}</p>
+        <p>${p.description}</p>
+      </div>
+    `).join("");
+}
+
+// SCROLL CONTROL FOR SIX VIDEOS
+const stage = $("cinema");
+const videos = [...document.querySelectorAll(".film")];
+
+const titles = [
+  "MY JOURNEY",
+  "ABOUT ME",
+  "MY VISION",
+  "PROFESSIONAL WORK",
+  "MY SKILLS",
+  "LET'S CONNECT"
+];
+
+const descriptions = [
+  "A journey of learning, growth and professional excellence.",
+  "Discover my professional background and experience.",
+  "Building a future through knowledge and dedication.",
+  "Accounting, auditing and financial compliance.",
+  "Continuous learning and professional development.",
+  "Let's connect and create new opportunities."
+];
+
+let activeIndex = 0;
+let ticking = false;
+
+function updateCinema() {
+  const rect = stage.getBoundingClientRect();
+  const maxScroll = stage.offsetHeight - window.innerHeight;
+
+  const progress = Math.max(
+    0, Math.min(1, -rect.top / maxScroll)
+  );
+
+  const position = progress * videos.length;
+  const index = Math.min(
+    videos.length - 1, Math.floor(position)
+  );
+
+  const localProgress = Math.min(
+    1, position - index
+  );
+
+  if (index !== activeIndex) {
+    videos[activeIndex].classList.remove("active");
+    activeIndex = index;
+    videos[activeIndex].classList.add("active");
+  }
+
+  const current = videos[index];
+
+  if (current.readyState >= 1 && current.duration) {
+    current.pause();
+    current.currentTime =
+      localProgress * Math.max(0, current.duration - 0.05);
+  }
+
+  $("filmNumber").textContent =
+    String(index + 1).padStart(2,"0") + " / 06";
+
+  $("filmTitle").textContent = titles[index];
+  $("filmDescription").textContent = descriptions[index];
+
+  $("progressBar").style.width =
+    (progress * 100) + "%";
+
+  ticking = false;
+}
+
+function requestUpdate() {
+  if (!ticking) {
+    requestAnimationFrame(updateCinema);
+    ticking = true;
+  }
+}
+
+videos.forEach(video => {
+  video.addEventListener("loadedmetadata", requestUpdate);
+});
+
+window.addEventListener("scroll", requestUpdate, {
+  passive: true
+});
+
+window.addEventListener("resize", requestUpdate);
+
+requestUpdate();
+</script>
+
 </body>
   </html>
-
+    
