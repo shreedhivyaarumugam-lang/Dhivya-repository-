@@ -562,8 +562,10 @@ if (typeof CONFIG !== "undefined") {
     `).join("");
 }
 
-// SCROLL CONTROL FOR SIX VIDEOS
-const stage = $("cinema");
+
+// CINEMATIC VIDEO PLAYBACK FIX FOR ANDROID
+
+const stage = document.getElementById("cinema");
 const videos = [...document.querySelectorAll(".film")];
 
 const titles = [
@@ -576,78 +578,72 @@ const titles = [
 ];
 
 const descriptions = [
-  "A journey of learning, growth and professional excellence.",
+  "A journey of learning and professional growth.",
   "Discover my professional background and experience.",
   "Building a future through knowledge and dedication.",
   "Accounting, auditing and financial compliance.",
-  "Continuous learning and professional development.",
-  "Let's connect and create new opportunities."
+  "Continuous learning and development.",
+  "Let's connect and create opportunities."
 ];
 
-let activeIndex = 0;
-let ticking = false;
+let activeIndex = -1;
 
 function updateCinema() {
   const rect = stage.getBoundingClientRect();
+
   const maxScroll = stage.offsetHeight - window.innerHeight;
 
   const progress = Math.max(
-    0, Math.min(1, -rect.top / maxScroll)
+    0,
+    Math.min(1, -rect.top / maxScroll)
   );
 
-  const position = progress * videos.length;
-  const index = Math.min(
-    videos.length - 1, Math.floor(position)
+  const position = Math.min(
+    progress * videos.length,
+    videos.length - 0.001
   );
 
-  const localProgress = Math.min(
-    1, position - index
-  );
+  const index = Math.floor(position);
 
   if (index !== activeIndex) {
-    videos[activeIndex].classList.remove("active");
+
+    if (activeIndex >= 0) {
+      videos[activeIndex].pause();
+      videos[activeIndex].classList.remove("active");
+    }
+
     activeIndex = index;
-    videos[activeIndex].classList.add("active");
+
+    const current = videos[index];
+
+    current.classList.add("active");
+
+    current.play().catch(error => {
+      console.log("Video playback needs user interaction:", error);
+    });
   }
 
-  const current = videos[index];
+  document.getElementById("filmNumber").textContent =
+    String(index + 1).padStart(2, "0") + " / 06";
 
-  if (current.readyState >= 1 && current.duration) {
-    current.pause();
-    current.currentTime =
-      localProgress * Math.max(0, current.duration - 0.05);
-  }
+  document.getElementById("filmTitle").textContent =
+    titles[index];
 
-  $("filmNumber").textContent =
-    String(index + 1).padStart(2,"0") + " / 06";
+  document.getElementById("filmDescription").textContent =
+    descriptions[index];
 
-  $("filmTitle").textContent = titles[index];
-  $("filmDescription").textContent = descriptions[index];
-
-  $("progressBar").style.width =
+  document.getElementById("progressBar").style.width =
     (progress * 100) + "%";
-
-  ticking = false;
 }
 
-function requestUpdate() {
-  if (!ticking) {
-    requestAnimationFrame(updateCinema);
-    ticking = true;
-  }
-}
-
-videos.forEach(video => {
-  video.addEventListener("loadedmetadata", requestUpdate);
-});
-
-window.addEventListener("scroll", requestUpdate, {
+window.addEventListener("scroll", updateCinema, {
   passive: true
 });
 
-window.addEventListener("resize", requestUpdate);
+window.addEventListener("resize", updateCinema);
 
-requestUpdate();
+updateCinema();
+
 </script>
 
 </body>
